@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option go_package = "/approve";
+
+package approve;
+
+import "google/protobuf/timestamp.proto";
+
+
+service ApproveService {
+    rpc SaveLetter(SentLetter) returns (SentLetter);
+    rpc SaveResponse(RecipientResponse) returns (RecipientResponse);
+}
+
+
+message SentLetter {
+    google.protobuf.Timestamp EventTime = 1;
+    string                    MessageID = 2;
+    google.protobuf.Timestamp CreatedAt = 3;
+    string                    TaskName  = 4;
+}
+
+
+message RecipientResponse {
+    google.protobuf.Timestamp EventTime = 1;
+    string                    MessageID = 2;
+    string                    TaskID    = 3;
+    string                    Recipient = 4;
+    string                    Status    = 5;               
+
+}
